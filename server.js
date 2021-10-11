@@ -4,9 +4,9 @@ const app = express();
 const http = require("http");
 const socket = require("socket.io");
 const mongoose = require("mongoose");
+const cors = require("cors");
 const path = require("path");
 let port = process.env.PORT;
-const cors = require("cors");
 const bodyParser = require("body-parser");
 const STATIC_CHANNELS = [
   {
@@ -78,7 +78,7 @@ app.get("*", (req, res) => {
 if (port == null || port == "") {
 port = 9000;
 }
-app.listen(port,function() {
+let server = app.listen(port,function() {
 console.log("Server has Started");
 });
 let io = socket(server);
